@@ -59,6 +59,7 @@ class DoublyLinkedList:
             self.head.prev = None
             temp.next = None
         self.length -= 1
+        return temp
 
 my_doubly_linked_list = DoublyLinkedList(7)
 my_doubly_linked_list.append(2)
