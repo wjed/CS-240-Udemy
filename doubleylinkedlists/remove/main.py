@@ -72,9 +72,45 @@ class DoublyLinkedList:
             for _ in range(self.length - 1, index, -1):
                 temp = temp.prev
         return temp.value
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    def insert(self, index, value):
+        if index == 0:
+            self.prepend(value)
+        if index == self.length:
+            self.append(value)
+        new_node = Node(value)
+        before = self.get(index-1)
+        after = before.next
+        if index < 0 or index >= self.length:
+            return None
+        else:
+            new_node.prev = before
+            new_node.next = after
+            before.next = new_node
+            after.prev = new_node
+            self.length += 1
+            return True
+    def remove(self, index):
+        if index == 0:
+            self.pop_first()
+        if index == (self.length -1):
+            self.pop()
+        temp = self.get(index)
+        while temp:
+            temp.next.previous = temp.prev
+            temp.prev.next = temp.next
+            temp.next = None
+            temp.prev = None
+            self.length -= 1
+            return temp
+
 my_doubly_linked_list = DoublyLinkedList(7)
 my_doubly_linked_list.append(2)
 my_doubly_linked_list.prepend(3)
 my_doubly_linked_list.print_list()
 print(my_doubly_linked_list.get(1))
-

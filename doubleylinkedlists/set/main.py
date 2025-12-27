@@ -72,9 +72,15 @@ class DoublyLinkedList:
             for _ in range(self.length - 1, index, -1):
                 temp = temp.prev
         return temp.value
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
 my_doubly_linked_list = DoublyLinkedList(7)
 my_doubly_linked_list.append(2)
 my_doubly_linked_list.prepend(3)
 my_doubly_linked_list.print_list()
 print(my_doubly_linked_list.get(1))
-
